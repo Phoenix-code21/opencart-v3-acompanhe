@@ -1,0 +1,66 @@
+{{ header }}{{ column_left }}
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+<section class="acompanhe-create">
+  <div class="container">
+
+    {% if error %}
+     <div class="alert alert-danger" role="alert" style="margin-top:10px;">
+       <ul>
+        {% for errors in error %}
+          <li>{{ errors }}</li>
+        {% endfor %}
+        </ul> 
+      </div> 
+    {% endif %}
+
+     {% if success %}
+     <div class="alert alert-success" role="alert" style="margin-top:10px;">
+       <ul>  
+         {% for succs in success %}
+           <li>{{ succs }}</li>
+          {% endfor %}
+        </ul> 
+      </div> 
+    {% endif %}
+
+      <form method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">{{ title_text }} </label>
+          <input type="text" name="title" maxlength="50" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{ title_text }}">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">{{ subtitle_text }}</label>
+          <input type="text" name="subtitle" maxlength="400" class="form-control" id="exampleInputPassword1" placeholder="{{ subtitle_text }}">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">{{ description_text }}</label>
+          <textarea name="description" id="editor"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">{{ position_text }}</label>
+          <input type="number" name="position" class="form-control" id="exampleInputPassword1" placeholder="{{ position_text }}">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlFile1">{{ photo_text }}</label>
+          <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" name="submit" class="btn btn-primary">{{ btn_create }}</button>
+        </div>
+
+      </form>
+  </div>
+</section>
+
+<script>
+    CKEDITOR.replace( 'editor' );
+</script>
+
+{{ footer }}

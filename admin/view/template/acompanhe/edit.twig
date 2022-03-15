@@ -1,0 +1,48 @@
+{{ header }}{{ column_left }}
+
+<section class="acompanhe-edit">
+  <div class="container">
+
+    {% if error %}
+     <div class="alert alert-danger" role="alert" style="margin-top:10px;">
+       <ul>
+        {% for errors in error %}
+          <li>{{ errors }}</li>
+        {% endfor %}
+        </ul> 
+      </div> 
+    {% endif %}
+
+     {% if success %}
+     <div class="alert alert-success" role="alert" style="margin-top:10px;">
+       <ul>  
+         {% for succs in success %}
+           <li>{{ succs }}</li>
+          {% endfor %}
+        </ul> 
+      </div> 
+    {% endif %}
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">{{ table_title_text }}</th>
+      <th scope="col">{{ table_edit_text }}</th>
+      <th scope="col">{{ table_del_text }}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for acompanhes in acompanhe %}
+    <tr>
+      <th scope="row">{{acompanhes.title}}</th>
+      <td><a href="index.php?route=acompanhe/edited&user_token={{tokem}}&edit={{acompanhes.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+      <td><a href="index.php?route=acompanhe/del&user_token={{tokem}}&del={{acompanhes.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+      
+  </div>
+</section>
+
+{{ footer }}
